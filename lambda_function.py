@@ -6,6 +6,7 @@ import os
 
 # 認証情報
 import Authorization
+# Authorization.authで自分のtokenを利用する
 
 print('hello')
 def getUser(token, userId):
