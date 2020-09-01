@@ -4,6 +4,10 @@ import urllib
 import re
 import os
 
+# 認証情報
+import Authorization
+
+print('hello')
 def getUser(token, userId):
     print('トークン: ', token)
     print('ユーザーID: ', userId)
@@ -25,7 +29,7 @@ def lambda_handler(event, context):
     url = "https://api.line.me/v2/bot/message/reply"
     method = "POST"
     headers = {
-        'Authorization': 'Bearer vohMaKjQ2W5DbGo0JQT8wNH3LmJmZ35voupSVVDg0zvr77W2WjWC2auq3zu1UmzFmMCwBRywWpWOlOMw2OvQuf/zTk2O9r0VSXobMiwcC+L18hv8cA2JtZybckJi7xYQ120qO6SN1+D8yW7AWJtJbwdB04t89/1O/w1cDnyilFU=',
+        'Authorization': Authorization.auth,
         'Content-Type': 'application/json'
     }
 
@@ -260,7 +264,7 @@ def lambda_handler(event, context):
                 }
             ]
         elif('ブロードキャスト' in event['events'][0]['message']['text']):
-            userInfo = getUser('Bearer vohMaKjQ2W5DbGo0JQT8wNH3LmJmZ35voupSVVDg0zvr77W2WjWC2auq3zu1UmzFmMCwBRywWpWOlOMw2OvQuf/zTk2O9r0VSXobMiwcC+L18hv8cA2JtZybckJi7xYQ120qO6SN1+D8yW7AWJtJbwdB04t89/1O/w1cDnyilFU=', event['events'][0]['source']['userId'])
+            userInfo = getUser(Authorization.auth, event['events'][0]['source']['userId'])
             url_broadcast = 'https://api.line.me/v2/bot/message/broadcast'
             messages=[
                 {
