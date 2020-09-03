@@ -1,0 +1,1 @@
+auth = 'LINE Developerから取得したキー'
