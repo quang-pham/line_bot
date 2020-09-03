@@ -8,7 +8,6 @@ import os
 import Authorization
 # Authorization.authで自分のtokenを利用する
 
-print('hello')
 def getUser(token, userId):
     print('トークン: ', token)
     print('ユーザーID: ', userId)
@@ -285,64 +284,6 @@ def lambda_handler(event, context):
             with urllib.request.urlopen(request) as res:
                 body = res.read()
 
-        elif("映画" in event['events'][0]['message']['text']):
-            message = [
-                # thumbnailImageUrlにて有効なURLをお設定しないと動かいないよ!!
-                    # {
-                    #     "type": "template",
-                    #     "altText": "this is a buttons template",
-                    #     "template": {
-                    #         "type": "buttons",
-                    #         "thumbnailImageUrl": "https://example.com/bot/images/image.jpg",
-                    #         "title": "好きな映画",
-                    #         "text": "どれか選んでね",
-                    #         "actions": [
-                    #             {
-                    #                 "type": "message",
-                    #                 "label": "シャークネード3",
-                    #                 "text": "シャークネード3"
-                    #             },
-                    #             {
-                    #                 "type": "message",
-                    #                 "label": "ジョーズ",
-                    #                 "text": "ジョーズ"
-                    #             }
-                    #         ]
-                    #     }
-                    # }
-                    {
-                        "type": "text",
-                        "text": "どのようなサービスをお探しでしょうか？",
-                        "quickReply": {
-                            "items": [
-                                {
-                                "type": "action",
-                                "action": {
-                                    "type": "cameraRoll",
-                                    "label": "Send photo"
-                                }
-                                },
-                                {
-                                "type": "action",
-                                "action": {
-                                    "type": "camera",
-                                    "label": "Open camera"
-                                }
-                                },
-                                {
-                                "type": "action",
-                                "action": {
-                                    "type": "postback",
-                                    "label": "AWS導入",
-                                    "data": "AWS",
-                                    "displayText": "AWS"
-                                }
-                            }
-                            ]
-                        }
-                    }
-                    
-                ]
         elif (re.match("検索", event['events'][0]['message']['text'])):
             keywords = event['events'][0]['message']['text'].split()
             if (len(keywords) > 1):
